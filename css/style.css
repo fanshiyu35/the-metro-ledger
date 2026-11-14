@@ -1,0 +1,285 @@
+/* =========================================================
+   The Metro Ledger — newsprint stylesheet
+   Fictional US national daily newspaper (training case)
+   Classic broadsheet: serif, rules, multi-column, newsprint
+   ========================================================= */
+
+:root {
+  --paper: #f6f2e7;
+  --paper-deep: #eae3cf;
+  --ink: #1a170f;
+  --soft: #57503f;
+  --hairline: #b9b2a0;
+  --kicker: #8a5c14;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { background: var(--paper); }
+
+body {
+  font-family: Georgia, "Times New Roman", Times, serif;
+  color: var(--ink);
+  background: var(--paper);
+  line-height: 1.55;
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 22px 28px 42px;
+}
+
+a { color: inherit; text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* ---------- Masthead ---------- */
+
+.masthead {
+  text-align: center;
+  border-bottom: 4px double var(--ink);
+  padding-bottom: 12px;
+  margin-bottom: 18px;
+}
+
+.topline {
+  font-size: 12px;
+  letter-spacing: 0.5px;
+  color: var(--soft);
+  text-transform: uppercase;
+  border-top: 2px solid var(--ink);
+  border-bottom: 1px solid var(--hairline);
+  padding: 5px 0;
+  margin-bottom: 16px;
+}
+
+.nameplate {
+  font-size: 58px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  line-height: 1.04;
+  margin-bottom: 4px;
+}
+
+.tagline {
+  font-size: 12.5px;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  color: var(--soft);
+  margin-bottom: 12px;
+}
+
+nav.sections {
+  display: flex;
+  justify-content: center;
+  gap: 34px;
+  border-top: 1px solid var(--ink);
+  border-bottom: 1px solid var(--ink);
+  padding: 7px 0;
+  font-size: 13.5px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+nav.sections a[aria-current="page"] { text-decoration: underline; }
+
+/* ---------- Front page grid ---------- */
+
+.front-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  column-gap: 26px;
+  align-items: start;
+}
+
+.cell { border-left: 1px solid var(--ink); padding-left: 20px; }
+.cell:first-child { border-left: 0; padding-left: 0; }
+
+.column-label {
+  font-size: 15px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  border-bottom: 2px solid var(--ink);
+  padding-bottom: 5px;
+  margin-bottom: 4px;
+}
+
+.kicker {
+  color: var(--kicker);
+  text-transform: uppercase;
+  letter-spacing: 1.4px;
+  font-size: 11.5px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.lead-head { font-size: 34px; line-height: 1.14; font-weight: 700; margin-bottom: 10px; }
+.lead-dek { font-size: 17px; color: var(--soft); line-height: 1.45; margin-bottom: 10px; }
+
+.byline { font-size: 13.5px; color: var(--soft); font-style: italic; margin-bottom: 16px; }
+
+.story { padding: 11px 0; border-top: 1px solid var(--hairline); }
+.story:first-of-type { border-top: none; }
+
+.story-head { font-size: 18px; line-height: 1.26; font-weight: 700; margin: 3px 0 4px; }
+.story-dek { font-size: 13.8px; color: var(--soft); line-height: 1.42; }
+
+.teaser-band {
+  margin-top: 26px;
+  border-top: 3px double var(--ink);
+  padding: 12px 0 0;
+  text-align: center;
+  font-size: 15px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+/* ---------- Section pages ---------- */
+
+.section-banner {
+  text-align: center;
+  border-top: 3px solid var(--ink);
+  border-bottom: 4px double var(--ink);
+  padding: 10px 0;
+  margin-bottom: 20px;
+}
+
+.section-name {
+  font-size: 36px;
+  font-weight: 700;
+  letter-spacing: 7px;
+  text-transform: uppercase;
+}
+
+.section-date { font-size: 12.5px; color: var(--soft); letter-spacing: 1px; text-transform: uppercase; margin-top: 3px; }
+
+.section-lead { margin-bottom: 24px; }
+.section-lead .lead-head { font-size: 30px; }
+
+.story-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 26px;
+}
+
+.story-grid .story { border-left: 1px solid var(--ink); border-top: none; padding: 2px 0 14px 20px; }
+.story-grid .story:nth-child(odd) { border-left: none; padding-left: 0; }
+
+/* ---------- Article ---------- */
+
+.article { max-width: 700px; margin: 0 auto; }
+
+.breadcrumbs { font-size: 13px; color: var(--soft); margin-bottom: 14px; }
+
+.article-head { font-size: 42px; line-height: 1.12; font-weight: 700; margin: 8px 0 12px; }
+
+.article-dek { font-size: 19px; color: var(--soft); font-style: italic; line-height: 1.45; margin-bottom: 16px; }
+
+.byline-block {
+  border-top: 1px solid var(--ink);
+  border-bottom: 1px solid var(--ink);
+  padding: 8px 0;
+  font-size: 13.5px;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.article-body p { font-size: 17.5px; margin-bottom: 16px; }
+.article-body .dateline { font-weight: 700; }
+
+.article-body p.lede-para::first-letter {
+  font-size: 3.6em;
+  float: left;
+  line-height: 0.8;
+  padding: 4px 7px 0 0;
+  font-weight: 700;
+}
+
+.subhead { font-weight: 700; font-size: 19.5px; margin: 22px 0 8px; }
+
+.pullquote {
+  border-left: 4px solid var(--kicker);
+  padding: 8px 0 8px 18px;
+  margin: 24px 0;
+  font-size: 21.5px;
+  font-style: italic;
+  line-height: 1.42;
+}
+
+.endrule {
+  text-align: center;
+  border-top: 2px solid var(--ink);
+  padding-top: 8px;
+  margin: 28px 0 20px;
+  font-size: 12px;
+  letter-spacing: 4px;
+  color: var(--soft);
+  text-transform: uppercase;
+}
+
+.related {
+  border: 1px solid var(--ink);
+  padding: 14px 18px;
+  font-size: 14.5px;
+  margin-bottom: 10px;
+}
+
+.related h2 {
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  border-bottom: 1px solid var(--hairline);
+  padding-bottom: 6px;
+  margin-bottom: 8px;
+}
+
+.related ul { list-style: none; }
+.related li { margin-bottom: 7px; }
+
+/* ---------- About page ---------- */
+
+.about-page h1 { font-size: 36px; margin-bottom: 4px; }
+.about-page .lede-dek { margin-bottom: 20px; }
+
+.about-page h2 {
+  font-size: 21px;
+  margin: 26px 0 10px;
+  padding-bottom: 5px;
+  border-bottom: 2px solid var(--ink);
+}
+
+.about-page p { font-size: 16.5px; margin-bottom: 12px; }
+
+.facts-table { width: 100%; border-collapse: collapse; font-size: 15.5px; margin-bottom: 14px; }
+.facts-table th, .facts-table td { border: 1px solid var(--hairline); padding: 7px 12px; text-align: left; }
+.facts-table th { background: var(--paper-deep); }
+
+.masthead-list { font-size: 16px; }
+.masthead-list div { display: flex; gap: 8px; padding: 4px 0; border-bottom: 1px dotted var(--hairline); }
+.masthead-list .role { min-width: 300px; font-weight: 700; }
+
+/* ---------- Footer ---------- */
+
+.site-footer {
+  margin-top: 32px;
+  border-top: 4px double var(--ink);
+  padding-top: 10px;
+  font-size: 12.5px;
+  color: var(--soft);
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 780px) {
+  .front-grid, .story-grid { grid-template-columns: 1fr; }
+  .cell { border-left: none; padding-left: 0; }
+  .story-grid .story { border-left: none; padding-left: 0; }
+  .nameplate { font-size: 40px; letter-spacing: 2px; }
+  .article-head { font-size: 30px; }
+}
