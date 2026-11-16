@@ -1,7 +1,10 @@
 /* =========================================================
    The Metro Ledger — newsprint stylesheet
    Fictional US national daily newspaper (training case)
-   Classic broadsheet: serif, rules, multi-column, newsprint
+   Issuer profile (2026-11-16): classic American broadsheet —
+   newsprint paper #f6f2e7, black ink #1a170f + bronze-gold
+   #8a5c14, Times New Roman masthead, Times body, dense
+   two-column layout, black rules between stories, drop caps.
    ========================================================= */
 
 :root {
@@ -18,13 +21,13 @@
 html { background: var(--paper); }
 
 body {
-  font-family: Georgia, "Times New Roman", Times, serif;
+  font-family: Times, "Times New Roman", Georgia, serif;
   color: var(--ink);
   background: var(--paper);
-  line-height: 1.55;
-  max-width: 1080px;
+  line-height: 1.5;
+  max-width: 1100px;
   margin: 0 auto;
-  padding: 22px 28px 42px;
+  padding: 20px 28px 42px;
 }
 
 a { color: inherit; text-decoration: none; }
@@ -35,13 +38,13 @@ a:hover { text-decoration: underline; }
 .masthead {
   text-align: center;
   border-bottom: 4px double var(--ink);
-  padding-bottom: 12px;
+  padding-bottom: 10px;
   margin-bottom: 18px;
 }
 
 .topline {
-  font-size: 12px;
-  letter-spacing: 0.5px;
+  font-size: 11.5px;
+  letter-spacing: 0.6px;
   color: var(--soft);
   text-transform: uppercase;
   border-top: 2px solid var(--ink);
@@ -51,15 +54,16 @@ a:hover { text-decoration: underline; }
 }
 
 .nameplate {
-  font-size: 58px;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 64px;
   font-weight: 700;
-  letter-spacing: 3px;
-  line-height: 1.04;
-  margin-bottom: 4px;
+  letter-spacing: 2px;
+  line-height: 1.02;
+  margin-bottom: 6px;
 }
 
 .tagline {
-  font-size: 12.5px;
+  font-size: 12px;
   text-transform: uppercase;
   letter-spacing: 2.5px;
   color: var(--soft);
@@ -68,18 +72,24 @@ a:hover { text-decoration: underline; }
 
 nav.sections {
   display: flex;
-  justify-content: center;
-  gap: 34px;
   border-top: 1px solid var(--ink);
   border-bottom: 1px solid var(--ink);
-  padding: 7px 0;
-  font-size: 13.5px;
+  font-size: 12px;
   letter-spacing: 1px;
   text-transform: uppercase;
-  font-weight: 700;
+  font-weight: 400;
 }
 
-nav.sections a[aria-current="page"] { text-decoration: underline; }
+nav.sections a {
+  flex: 1;
+  text-align: center;
+  padding: 6px 2px;
+  border-right: 1px solid var(--hairline);
+}
+
+nav.sections a:last-child { border-right: none; }
+nav.sections a:hover { background: var(--paper-deep); text-decoration: none; }
+nav.sections a[aria-current="page"] { font-weight: 700; text-decoration: underline; }
 
 /* ---------- Front page grid ---------- */
 
@@ -99,28 +109,31 @@ nav.sections a[aria-current="page"] { text-decoration: underline; }
   letter-spacing: 2px;
   border-bottom: 2px solid var(--ink);
   padding-bottom: 5px;
-  margin-bottom: 4px;
+  margin-bottom: 2px;
 }
 
 .kicker {
   color: var(--kicker);
   text-transform: uppercase;
   letter-spacing: 1.4px;
-  font-size: 11.5px;
+  font-size: 11px;
   font-weight: 700;
   margin-bottom: 4px;
 }
 
-.lead-head { font-size: 34px; line-height: 1.14; font-weight: 700; margin-bottom: 10px; }
-.lead-dek { font-size: 17px; color: var(--soft); line-height: 1.45; margin-bottom: 10px; }
+.lead-head { font-size: 42px; line-height: 1.1; font-weight: 700; letter-spacing: -0.4px; margin-bottom: 10px; }
+.lead-dek { font-size: 16.5px; color: var(--soft); line-height: 1.42; margin-bottom: 10px; }
 
-.byline { font-size: 13.5px; color: var(--soft); font-style: italic; margin-bottom: 16px; }
+.byline { font-size: 13px; color: var(--soft); font-style: italic; margin-bottom: 14px; }
 
-.story { padding: 11px 0; border-top: 1px solid var(--hairline); }
+.story { padding: 10px 0; border-top: 1px solid var(--ink); }
 .story:first-of-type { border-top: none; }
 
-.story-head { font-size: 18px; line-height: 1.26; font-weight: 700; margin: 3px 0 4px; }
-.story-dek { font-size: 13.8px; color: var(--soft); line-height: 1.42; }
+/* Rule between the front-page lead article and the story list below it */
+article.cell .story:first-of-type { border-top: 1px solid var(--ink); margin-top: 14px; }
+
+.story-head { font-size: 17px; line-height: 1.22; font-weight: 700; margin: 3px 0 4px; }
+.story-dek { font-size: 13.5px; color: var(--soft); line-height: 1.4; }
 
 .teaser-band {
   margin-top: 26px;
@@ -144,16 +157,17 @@ nav.sections a[aria-current="page"] { text-decoration: underline; }
 }
 
 .section-name {
+  font-family: "Times New Roman", Times, serif;
   font-size: 36px;
   font-weight: 700;
-  letter-spacing: 7px;
+  letter-spacing: 6px;
   text-transform: uppercase;
 }
 
-.section-date { font-size: 12.5px; color: var(--soft); letter-spacing: 1px; text-transform: uppercase; margin-top: 3px; }
+.section-date { font-size: 12px; color: var(--soft); letter-spacing: 1px; text-transform: uppercase; margin-top: 3px; }
 
 .section-lead { margin-bottom: 24px; }
-.section-lead .lead-head { font-size: 30px; }
+.section-lead .lead-head { font-size: 32px; }
 
 .story-grid {
   display: grid;
@@ -170,15 +184,22 @@ nav.sections a[aria-current="page"] { text-decoration: underline; }
 
 .breadcrumbs { font-size: 13px; color: var(--soft); margin-bottom: 14px; }
 
-.article-head { font-size: 42px; line-height: 1.12; font-weight: 700; margin: 8px 0 12px; }
+.article-head {
+  font-family: "Times New Roman", Times, serif;
+  font-size: 44px;
+  line-height: 1.1;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  margin: 8px 0 12px;
+}
 
-.article-dek { font-size: 19px; color: var(--soft); font-style: italic; line-height: 1.45; margin-bottom: 16px; }
+.article-dek { font-size: 18px; color: var(--soft); font-style: italic; line-height: 1.42; margin-bottom: 16px; }
 
 .byline-block {
   border-top: 1px solid var(--ink);
   border-bottom: 1px solid var(--ink);
   padding: 8px 0;
-  font-size: 13.5px;
+  font-size: 13px;
   margin-bottom: 20px;
   display: flex;
   justify-content: space-between;
@@ -186,33 +207,51 @@ nav.sections a[aria-current="page"] { text-decoration: underline; }
   gap: 6px;
 }
 
-.article-body p { font-size: 17.5px; margin-bottom: 16px; }
+.article-body {
+  column-count: 2;
+  column-gap: 28px;
+  column-rule: 1px solid var(--hairline);
+}
+
+.article-body p { font-size: 16px; line-height: 1.5; margin-bottom: 12px; text-align: justify; hyphens: auto; }
 .article-body .dateline { font-weight: 700; }
 
 .article-body p.lede-para::first-letter {
-  font-size: 3.6em;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 2.4em;
   float: left;
-  line-height: 0.8;
-  padding: 4px 7px 0 0;
+  line-height: 0.9;
+  padding: 0.04em 0.1em 0 0;
   font-weight: 700;
 }
+@supports (initial-letter: 2) {
+  .article-body p.lede-para::first-letter {
+    float: none;
+    font-size: inherit;
+    initial-letter: 2.8;
+    margin-right: 0.04em;
+    padding: 0;
+    line-height: inherit;
+    font-weight: 700;
+  }
+}
 
-.subhead { font-weight: 700; font-size: 19.5px; margin: 22px 0 8px; }
+.subhead { font-weight: 700; font-size: 18.5px; margin: 20px 0 8px; }
 
 .pullquote {
   border-left: 4px solid var(--kicker);
   padding: 8px 0 8px 18px;
-  margin: 24px 0;
-  font-size: 21.5px;
+  margin: 22px 0;
+  font-size: 20px;
   font-style: italic;
-  line-height: 1.42;
+  line-height: 1.4;
 }
 
 .endrule {
   text-align: center;
   border-top: 2px solid var(--ink);
   padding-top: 8px;
-  margin: 28px 0 20px;
+  margin: 26px 0 20px;
   font-size: 12px;
   letter-spacing: 4px;
   color: var(--soft);
@@ -240,7 +279,12 @@ nav.sections a[aria-current="page"] { text-decoration: underline; }
 
 /* ---------- About page ---------- */
 
-.about-page h1 { font-size: 36px; margin-bottom: 4px; }
+.about-page h1 {
+  font-family: "Times New Roman", Times, serif;
+  font-size: 38px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
 .about-page .lede-dek { margin-bottom: 20px; }
 
 .about-page h2 {
@@ -250,13 +294,13 @@ nav.sections a[aria-current="page"] { text-decoration: underline; }
   border-bottom: 2px solid var(--ink);
 }
 
-.about-page p { font-size: 16.5px; margin-bottom: 12px; }
+.about-page p { font-size: 16px; margin-bottom: 12px; }
 
-.facts-table { width: 100%; border-collapse: collapse; font-size: 15.5px; margin-bottom: 14px; }
+.facts-table { width: 100%; border-collapse: collapse; font-size: 15px; margin-bottom: 14px; }
 .facts-table th, .facts-table td { border: 1px solid var(--hairline); padding: 7px 12px; text-align: left; }
 .facts-table th { background: var(--paper-deep); }
 
-.masthead-list { font-size: 16px; }
+.masthead-list { font-size: 15.5px; }
 .masthead-list div { display: flex; gap: 8px; padding: 4px 0; border-bottom: 1px dotted var(--hairline); }
 .masthead-list .role { min-width: 300px; font-weight: 700; }
 
@@ -266,7 +310,7 @@ nav.sections a[aria-current="page"] { text-decoration: underline; }
   margin-top: 32px;
   border-top: 4px double var(--ink);
   padding-top: 10px;
-  font-size: 12.5px;
+  font-size: 12px;
   color: var(--soft);
   display: flex;
   justify-content: space-between;
@@ -282,4 +326,5 @@ nav.sections a[aria-current="page"] { text-decoration: underline; }
   .story-grid .story { border-left: none; padding-left: 0; }
   .nameplate { font-size: 40px; letter-spacing: 2px; }
   .article-head { font-size: 30px; }
+  .article-body { column-count: 1; }
 }
