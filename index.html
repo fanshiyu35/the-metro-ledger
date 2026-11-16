@@ -1,96 +1,602 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="robots" content="noindex, nofollow">
-<title>The Metro Ledger — Front Page | Monday, October 20, 2025</title>
-<link rel="stylesheet" href="./css/style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f6f2e7">
+  <title>The Metro Ledger</title>
+  <style>
+    :root {
+      --paper: #f6f2e7;
+      --ink: #171612;
+      --muted: #666158;
+      --rule: #aaa394;
+      --light-rule: #d4cdbd;
+      --gold: #8a5c14;
+      --white: #fffdf7;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      background: var(--paper);
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--paper);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 15px;
+      line-height: 1.48;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .page {
+      width: min(100% - 64px, 1360px);
+      margin: 0 auto;
+    }
+
+    .edition-line {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 12px 0 10px;
+      border-bottom: 1px solid var(--ink);
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1.15px;
+      text-transform: uppercase;
+      color: #514c43;
+    }
+
+    .masthead {
+      padding: 12px 0 2px;
+      text-align: center;
+    }
+
+    .masthead h1 {
+      margin: 0;
+      font-family: "Times New Roman", Times, serif;
+      font-size: clamp(52px, 7.5vw, 90px);
+      font-weight: 900;
+      line-height: .98;
+      letter-spacing: -4.5px;
+      white-space: nowrap;
+    }
+
+    .masthead-rule {
+      height: 5px;
+      margin-top: 13px;
+      border-top: 1px solid var(--ink);
+      border-bottom: 3px double var(--ink);
+    }
+
+    .tagline {
+      margin: 9px 0 15px;
+      text-align: center;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .navigation {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0;
+      border-top: 1px solid var(--ink);
+      border-bottom: 1px solid var(--ink);
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 1.4px;
+      text-transform: uppercase;
+    }
+
+    .navigation a {
+      display: block;
+      padding: 13px 27px;
+      transition: color .2s ease;
+    }
+
+    .navigation a:hover {
+      color: var(--gold);
+    }
+
+    .navigation a + a {
+      border-left: 1px solid var(--light-rule);
+    }
+
+    .navigation a:first-child {
+      color: var(--gold);
+    }
+
+    .advertisement {
+      height: 64px;
+      margin: 19px 0 25px;
+      border: 1px solid #c8c0b0;
+      background: rgba(255, 253, 247, .22);
+    }
+
+    .section-heading {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 0 0 19px;
+      padding-bottom: 8px;
+      border-bottom: 3px double var(--ink);
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 2.1px;
+      line-height: 1.2;
+      text-transform: uppercase;
+    }
+
+    .section-heading::after {
+      content: "";
+      height: 1px;
+      flex: 1;
+      background: var(--light-rule);
+    }
+
+    .section-heading span {
+      color: var(--gold);
+    }
+
+    .front-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.65fr) minmax(290px, .9fr);
+      gap: 31px;
+      align-items: start;
+    }
+
+    .lead-story {
+      padding: 0 23px 21px 0;
+      border-right: 1px solid var(--rule);
+    }
+
+    .category {
+      display: block;
+      margin-bottom: 10px;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      line-height: 1.3;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    .lead-story h2 {
+      max-width: 760px;
+      margin: 0 0 14px;
+      font-family: "Times New Roman", Times, serif;
+      font-size: clamp(35px, 4.4vw, 57px);
+      font-weight: 800;
+      line-height: 1.02;
+      letter-spacing: -1.5px;
+    }
+
+    .lead-story .dek {
+      max-width: 690px;
+      margin: 0 0 15px;
+      font-size: 18px;
+      line-height: 1.48;
+      color: #403c35;
+    }
+
+    .byline {
+      padding-top: 10px;
+      border-top: 1px solid var(--light-rule);
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .55px;
+      color: var(--muted);
+    }
+
+    .side-stories {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .side-story {
+      padding: 0 0 15px;
+      margin-bottom: 15px;
+      border-bottom: 1px solid var(--light-rule);
+    }
+
+    .side-story:last-child {
+      margin-bottom: 0;
+    }
+
+    .side-story .category {
+      margin-bottom: 5px;
+      font-size: 9px;
+    }
+
+    .side-story h3 {
+      margin: 0 0 6px;
+      font-size: 20px;
+      font-weight: 700;
+      line-height: 1.13;
+      letter-spacing: -.3px;
+    }
+
+    .side-story p {
+      margin: 0;
+      font-size: 12px;
+      line-height: 1.45;
+      color: #555046;
+    }
+
+    .mid-ad {
+      height: 50px;
+      margin: 23px 0 26px;
+      border: 1px solid #c8c0b0;
+    }
+
+    .today-section {
+      padding-top: 3px;
+    }
+
+    .today-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      column-gap: 29px;
+      row-gap: 0;
+    }
+
+    .today-story {
+      padding: 13px 0 16px;
+      border-bottom: 1px solid var(--light-rule);
+    }
+
+    .today-story:nth-child(-n+2) {
+      padding-top: 0;
+    }
+
+    .today-story .category {
+      margin-bottom: 5px;
+      font-size: 9px;
+    }
+
+    .today-story h3 {
+      margin: 0 0 6px;
+      font-size: 19px;
+      line-height: 1.16;
+      font-weight: 700;
+      letter-spacing: -.25px;
+    }
+
+    .today-story p {
+      margin: 0;
+      font-size: 12px;
+      line-height: 1.45;
+      color: #555046;
+    }
+
+    .more-link {
+      display: inline-block;
+      margin-top: 20px;
+      padding-bottom: 4px;
+      border-bottom: 1px solid var(--gold);
+      color: var(--gold);
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 1.3px;
+      text-transform: uppercase;
+    }
+
+    .more-link:hover {
+      color: var(--ink);
+      border-color: var(--ink);
+    }
+
+    footer {
+      margin-top: 32px;
+      padding: 17px 0 25px;
+      border-top: 3px double var(--ink);
+      text-align: center;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      line-height: 1.6;
+      color: #625d53;
+    }
+
+    @media (min-width: 1100px) {
+      .lead-story {
+        min-height: 310px;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .page {
+        width: min(100% - 32px, 620px);
+      }
+
+      .edition-line {
+        font-size: 8px;
+        letter-spacing: .5px;
+      }
+
+      .masthead h1 {
+        font-size: clamp(42px, 10vw, 68px);
+        letter-spacing: -2.5px;
+      }
+
+      .tagline {
+        font-size: 8px;
+        letter-spacing: 2px;
+      }
+
+      .navigation a {
+        padding: 12px 13px;
+        font-size: 9px;
+        letter-spacing: .8px;
+      }
+
+      .advertisement {
+        height: 45px;
+        margin: 14px 0 21px;
+      }
+
+      .front-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+
+      .lead-story {
+        padding: 0 0 19px;
+        border-right: 0;
+        border-bottom: 1px solid var(--rule);
+      }
+
+      .lead-story h2 {
+        font-size: clamp(36px, 8vw, 49px);
+      }
+
+      .lead-story .dek {
+        font-size: 16px;
+      }
+
+      .side-stories {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        column-gap: 20px;
+      }
+
+      .side-story {
+        padding-bottom: 13px;
+      }
+
+      .side-story h3 {
+        font-size: 17px;
+      }
+
+      .today-grid {
+        column-gap: 19px;
+      }
+
+      .today-story h3 {
+        font-size: 17px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .page {
+        width: calc(100% - 28px);
+      }
+
+      .edition-line {
+        flex-wrap: wrap;
+        justify-content: center;
+        text-align: center;
+        line-height: 1.7;
+      }
+
+      .masthead {
+        padding-top: 16px;
+      }
+
+      .masthead h1 {
+        font-size: clamp(38px, 10.4vw, 50px);
+        letter-spacing: -2px;
+      }
+
+      .navigation a {
+        padding: 11px 9px;
+        font-size: 8px;
+        letter-spacing: .3px;
+      }
+
+      .side-stories,
+      .today-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .today-story:nth-child(2) {
+        padding-top: 13px;
+      }
+
+      .today-story h3 {
+        font-size: 19px;
+      }
+
+      .side-story h3 {
+        font-size: 19px;
+      }
+
+      .section-heading {
+        margin-bottom: 15px;
+      }
+    }
+
+    @media print {
+      body {
+        background: white;
+      }
+
+      .page {
+        width: 100%;
+      }
+
+      .advertisement,
+      .mid-ad {
+        background: transparent;
+      }
+    }
+  </style>
 </head>
+
 <body>
+  <div class="page">
 
-<header class="masthead">
-  <div class="topline">Monday, October 20, 2025 &middot; Vol. LXIII &middot; No. 19,417 &middot; Price $2.50 &middot; Washington, D.C.</div>
-  <h1 class="nameplate">The Metro Ledger</h1>
-  <p class="tagline">The National Daily &middot; Independent Reporting Since 1963</p>
-  <nav class="sections" aria-label="Sections">
-    <a href="./" aria-current="page">Front Page</a>
-    <a href="./science/">Science &amp; Technology</a>
-    <a href="./about/">About the Ledger</a>
-  </nav>
-</header>
+    <header>
+      <div class="edition-line">
+        <span>Monday, October 20, 2025 &middot; Vol. LXIII &middot; No. 19,417 &middot; Price $2.50 &middot; Washington, D.C.</span>
+      </div>
 
-<main class="front-grid">
+      <div class="masthead">
+        <h1>The Metro Ledger</h1>
+        <div class="masthead-rule"></div>
+        <p class="tagline">The National Daily &middot; Independent Reporting Since 1963</p>
+      </div>
 
-  <article class="cell">
-    <p class="kicker">Science &amp; Technology</p>
-    <h2 class="lead-head"><a href="./science/2025/10/yanxi-liu-mtrs/">A Stability Check for Transit Rankings</a></h2>
-    <p class="lead-dek">A year after Standard Practice SP-41 made the Multivariate Transport Ranking Stability test part of formal project review, agencies are building the check into investment decisions &mdash; and asking how much any ranking would move if its assumptions did.</p>
-    <p class="byline">By Fenella Whitaker, Staff Writer &middot; October 20, 2025</p>
+      <nav class="navigation" aria-label="Main navigation">
+        <a href="#">Front Page</a>
+        <a href="#">Science &amp; Technology</a>
+        <a href="#">About the Ledger</a>
+      </nav>
+    </header>
 
-    <div class="story">
-      <p class="kicker">Transportation</p>
-      <h3 class="story-head">Commuter Rail Ridership Climbs as Cities Expand Off-Peak Service</h3>
-      <p class="story-dek">Operators credit more frequent midday trains; ridership up 9 percent over the year.</p>
-    </div>
-    <div class="story">
-      <p class="kicker">National</p>
-      <h3 class="story-head">Four-State Corridor Study Backs Staged Investment Over a Single Big Build</h3>
-      <p class="story-dek">Analysts say spreading money across a decade beats one grand opening.</p>
-    </div>
-    <div class="story">
-      <p class="kicker">Science</p>
-      <h3 class="story-head">Urban Heat Island Monitoring Shows Widening Gaps in 14 Metro Regions</h3>
-      <p class="story-dek">Nighttime temperatures diverge fastest in neighborhoods with the least tree cover.</p>
-    </div>
-    <div class="story">
-      <p class="kicker">Transportation</p>
-      <h3 class="story-head">Transit Boards Weigh Off-Peak Fare Trials After Pilot Results in Three Cities</h3>
-      <p class="story-dek">Cheaper midday fares drew riders without cannibalizing rush-hour revenue, pilots found.</p>
-    </div>
-  </article>
+    <div class="advertisement" aria-hidden="true"></div>
 
-  <aside class="cell">
-    <h2 class="column-label">Today&rsquo;s Stories</h2>
-    <div class="story">
-      <p class="kicker">Science</p>
-      <h3 class="story-head">Bridge Inspection Robots Pass First Round of National Pilot</h3>
-      <p class="story-dek">Crawler robots flagged corrosion three times faster than manual crews in early trials.</p>
-    </div>
-    <div class="story">
-      <p class="kicker">Science</p>
-      <h3 class="story-head">Long-Baseline Survey Maps Near-Earth Objects in Record Detail</h3>
-      <p class="story-dek">A new catalog triples the number of asteroids with resolved rotation data.</p>
-    </div>
-    <div class="story">
-      <p class="kicker">Transportation</p>
-      <h3 class="story-head">Electric Bus Fleets Top 4,000 Vehicles in North American Service</h3>
-      <p class="story-dek">Depot charging emerges as the binding constraint for the next wave of orders.</p>
-    </div>
-    <div class="story">
-      <p class="kicker">National</p>
-      <h3 class="story-head">Coastal Cities Get Sharper Flood Forecasts From New Modeling Runs</h3>
-      <p class="story-dek">Higher-resolution storm surge models extend usable lead time by a full day.</p>
-    </div>
-    <div class="story">
-      <p class="kicker">Transportation</p>
-      <h3 class="story-head">Researchers Flag Gap Between Forecast and Actual Travel-Time Savings on Tolled Lanes</h3>
-      <p class="story-dek">A new study urges agencies to re-measure after opening rather than rely on pre-construction estimates.</p>
-    </div>
-    <div class="story">
-      <p class="kicker">Science</p>
-      <h3 class="story-head">Weather Models Narrow the Uncertainty Cone for Coastal Storms</h3>
-      <p class="story-dek">Refined wind-field data sharpen track forecasts in the critical 48-hour window.</p>
-    </div>
-  </aside>
+    <main>
+      <section aria-labelledby="science-heading">
+        <h2 class="section-heading" id="science-heading">
+          <span>Science &amp; Technology</span>
+        </h2>
 
-</main>
+        <div class="front-grid">
 
-<div class="teaser-band"><a href="./science/">More from Science &amp; Technology &rarr;</a></div>
+          <article class="lead-story">
+            <span class="category">Science &amp; Technology</span>
 
-<footer class="site-footer">
-  <span>&copy; 2025 The Metro Ledger &middot; Published by Metro Ledger Publishing Company, LLC, Washington, D.C.</span>
-</footer>
+            <h2>A Stability Check for Transit Rankings</h2>
 
+            <p class="dek">
+              A year after Standard Practice SP-41 made the Multivariate Transport Ranking Stability test part of formal project review, agencies are building the check into investment decisions &mdash; and asking how much any ranking would move if its assumptions did.
+            </p>
+
+            <div class="byline">
+              By Fenella Whitaker, Staff Writer &middot; October 20, 2025
+            </div>
+          </article>
+
+          <aside class="side-stories">
+
+            <article class="side-story">
+              <span class="category">Transportation</span>
+              <h3>Commuter Rail Ridership Climbs as Cities Expand Off-Peak Service</h3>
+              <p>Operators credit more frequent midday trains; ridership up 9 percent over the year.</p>
+            </article>
+
+            <article class="side-story">
+              <span class="category">National</span>
+              <h3>Four-State Corridor Study Backs Staged Investment Over a Single Big Build</h3>
+              <p>Analysts say spreading money across a decade beats one grand opening.</p>
+            </article>
+
+            <article class="side-story">
+              <span class="category">Science</span>
+              <h3>Urban Heat Island Monitoring Shows Widening Gaps in 14 Metro Regions</h3>
+              <p>Nighttime temperatures diverge fastest in neighborhoods with the least tree cover.</p>
+            </article>
+
+            <article class="side-story">
+              <span class="category">Transportation</span>
+              <h3>Transit Boards Weigh Off-Peak Fare Trials After Pilot Results in Three Cities</h3>
+              <p>Cheaper midday fares drew riders without cannibalizing rush-hour revenue, pilots found.</p>
+            </article>
+
+          </aside>
+        </div>
+      </section>
+
+      <div class="mid-ad" aria-hidden="true"></div>
+
+      <section class="today-section" aria-labelledby="today-heading">
+        <h2 class="section-heading" id="today-heading">
+          <span>Today&rsquo;s Stories</span>
+        </h2>
+
+        <div class="today-grid">
+
+          <article class="today-story">
+            <span class="category">Science</span>
+            <h3>Bridge Inspection Robots Pass First Round of National Pilot</h3>
+            <p>Crawler robots flagged corrosion three times faster than manual crews in early trials.</p>
+          </article>
+
+          <article class="today-story">
+            <span class="category">Science</span>
+            <h3>Long-Baseline Survey Maps Near-Earth Objects in Record Detail</h3>
+            <p>A new catalog triples the number of asteroids with resolved rotation data.</p>
+          </article>
+
+          <article class="today-story">
+            <span class="category">Transportation</span>
+            <h3>Electric Bus Fleets Top 4,000 Vehicles in North American Service</h3>
+            <p>Depot charging emerges as the binding constraint for the next wave of orders.</p>
+          </article>
+
+          <article class="today-story">
+            <span class="category">National</span>
+            <h3>Coastal Cities Get Sharper Flood Forecasts From New Modeling Runs</h3>
+            <p>Higher-resolution storm surge models extend usable lead time by a full day.</p>
+          </article>
+
+          <article class="today-story">
+            <span class="category">Transportation</span>
+            <h3>Researchers Flag Gap Between Forecast and Actual Travel-Time Savings on Tolled Lanes</h3>
+            <p>A new study urges agencies to re-measure after opening rather than rely on pre-construction estimates.</p>
+          </article>
+
+          <article class="today-story">
+            <span class="category">Science</span>
+            <h3>Weather Models Narrow the Uncertainty Cone for Coastal Storms</h3>
+            <p>Refined wind-field data sharpen track forecasts in the critical 48-hour window.</p>
+          </article>
+
+        </div>
+
+        <a class="more-link" href="#">More from Science &amp; Technology &rarr;</a>
+      </section>
+    </main>
+
+    <footer>
+      &copy; 2025 The Metro Ledger &middot; Published by Metro Ledger Publishing Company, LLC, Washington, D.C.
+    </footer>
+
+  </div>
 </body>
 </html>
